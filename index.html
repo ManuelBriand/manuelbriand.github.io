@@ -22,20 +22,21 @@
         color: #333;
         background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
         min-height: 100vh;
+        padding: 40px 20px;
         display: flex;
-        align-items: center;
+        align-items: flex-start;
         justify-content: center;
-        padding: 20px;
       }
 
       .container {
         background: white;
         border-radius: 20px;
         box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-        max-width: 600px;
+        max-width: 700px;
         width: 100%;
         padding: 40px;
         animation: fadeIn 0.5s ease-in;
+        margin: auto;
       }
 
       @keyframes fadeIn {
@@ -121,6 +122,58 @@
         text-decoration: underline;
       }
 
+      .contact-button {
+        display: inline-block;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 12px 30px;
+        border-radius: 25px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: transform 0.2s, box-shadow 0.2s;
+        margin-top: 10px;
+      }
+
+      .contact-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+        color: white;
+        text-decoration: none;
+      }
+
+      .instructions {
+        background: #fff9e6;
+        border-left: 4px solid #ffc107;
+        padding: 15px;
+        border-radius: 8px;
+        margin-bottom: 20px;
+        font-size: 15px;
+        line-height: 1.8;
+      }
+
+      .instructions ol {
+        margin-left: 20px;
+        margin-top: 10px;
+      }
+
+      .instructions li {
+        margin-bottom: 8px;
+      }
+
+      .support-types {
+        margin-top: 15px;
+      }
+
+      .support-types ul {
+        margin-left: 20px;
+        margin-top: 10px;
+      }
+
+      .support-types li {
+        margin-bottom: 8px;
+        color: #555;
+      }
+
       .footer {
         text-align: center;
         margin-top: 40px;
@@ -155,20 +208,60 @@
       <p class="subtitle">Informations de support</p>
 
       <div class="section">
-        <h2 class="section-title">Contact</h2>
+        <h2 class="section-title">Besoin d'aide ?</h2>
+        <div class="instructions">
+          <strong>Comment nous contacter :</strong>
+          <ol>
+            <li>Envoyez un email à notre équipe de support</li>
+            <li>Décrivez votre question ou votre problème en détail</li>
+            <li>
+              Indiquez la version de l'application et votre appareil si
+              nécessaire
+            </li>
+            <li>Nous vous répondrons dans les plus brefs délais</li>
+          </ol>
+        </div>
         <div class="info-item">
           <div class="info-label">Email de support</div>
           <div class="info-value">
-            <a href="mailto:manulab35@gmail.com">manulab35@gmail.com</a>
+            <a href="mailto:manulab35@gmail.com?subject=Support Tagino"
+              >manulab35@gmail.com</a
+            >
           </div>
+          <div style="text-align: center; margin-top: 15px">
+            <a
+              href="mailto:manulab35@gmail.com?subject=Support Tagino"
+              class="contact-button"
+              >Contacter le support</a
+            >
+          </div>
+        </div>
+        <div class="support-types">
+          <strong style="color: #333; display: block; margin-bottom: 10px"
+            >Nous pouvons vous aider avec :</strong
+          >
+          <ul>
+            <li>Questions sur l'utilisation de l'application</li>
+            <li>Problèmes techniques ou bugs</li>
+            <li>Suggestions d'amélioration</li>
+            <li>Problèmes de compte ou de données</li>
+            <li>Toute autre question concernant Tagino</li>
+          </ul>
         </div>
       </div>
 
       <div class="section">
-        <h2 class="section-title">À propos</h2>
+        <h2 class="section-title">À propos de Tagino</h2>
         <div class="info-item">
           <div class="info-label">Application</div>
           <div class="info-value">Tagino</div>
+        </div>
+        <div class="info-item">
+          <div class="info-label">Support</div>
+          <div class="info-value">
+            Notre équipe est disponible pour répondre à toutes vos questions et
+            vous aider avec tout problème que vous pourriez rencontrer.
+          </div>
         </div>
       </div>
 
