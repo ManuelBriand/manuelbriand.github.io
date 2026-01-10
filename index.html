@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta
       name="description"
-      content="Informations de support pour l'application Tagino"
+      content="Informations de support pour les applications Tagino et Fabugo"
     />
-    <title>Support - Tagino</title>
+    <title>Support - Applications</title>
     <style>
       * {
         margin: 0;
@@ -26,6 +26,10 @@
         display: flex;
         align-items: flex-start;
         justify-content: center;
+      }
+
+      body.fabugo-theme {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       }
 
       .container {
@@ -50,10 +54,86 @@
         }
       }
 
+      .app-selector {
+        display: flex;
+        gap: 15px;
+        justify-content: center;
+        margin-bottom: 30px;
+        flex-wrap: wrap;
+      }
+
+      .app-card {
+        flex: 1;
+        min-width: 200px;
+        padding: 20px;
+        border: 3px solid #e0e0e0;
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-align: center;
+        background: #f8f9fa;
+      }
+
+      .app-card:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .app-card.active {
+        border-color: #3b82f6;
+        background: #eff6ff;
+      }
+
+      .app-card.active.fabugo {
+        border-color: #10b981;
+        background: #d1fae5;
+      }
+
+      .app-card-icon {
+        width: 60px;
+        height: 60px;
+        margin: 0 auto 15px;
+        border-radius: 14px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 30px;
+        color: white;
+        font-weight: bold;
+      }
+
+      .app-card.tagino .app-card-icon {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      }
+
+      .app-card.fabugo .app-card-icon {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      }
+
+      .app-card-title {
+        font-size: 20px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 5px;
+      }
+
+      .app-card-desc {
+        font-size: 14px;
+        color: #666;
+      }
+
+      .content-area {
+        display: none;
+      }
+
+      .content-area.active {
+        display: block;
+        animation: fadeIn 0.5s ease-in;
+      }
+
       .app-icon {
         width: 80px;
         height: 80px;
-        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
         border-radius: 18px;
         margin: 0 auto 20px;
         display: flex;
@@ -62,6 +142,14 @@
         font-size: 40px;
         color: white;
         font-weight: bold;
+      }
+
+      .tagino-content .app-icon {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      }
+
+      .fabugo-content .app-icon {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
       }
 
       h1 {
@@ -84,9 +172,16 @@
 
       .section-title {
         font-size: 20px;
-        color: #3b82f6;
         margin-bottom: 15px;
         font-weight: 600;
+      }
+
+      .tagino-content .section-title {
+        color: #3b82f6;
+      }
+
+      .fabugo-content .section-title {
+        color: #10b981;
       }
 
       .info-item {
@@ -95,6 +190,10 @@
         background: #f8f9fa;
         border-radius: 10px;
         border-left: 4px solid #3b82f6;
+      }
+
+      .fabugo-content .info-item {
+        border-left-color: #10b981;
       }
 
       .info-label {
@@ -112,19 +211,30 @@
       }
 
       .info-value a {
-        color: #3b82f6;
         text-decoration: none;
         transition: color 0.3s;
       }
 
-      .info-value a:hover {
+      .tagino-content .info-value a {
+        color: #3b82f6;
+      }
+
+      .tagino-content .info-value a:hover {
         color: #2563eb;
+        text-decoration: underline;
+      }
+
+      .fabugo-content .info-value a {
+        color: #10b981;
+      }
+
+      .fabugo-content .info-value a:hover {
+        color: #059669;
         text-decoration: underline;
       }
 
       .contact-button {
         display: inline-block;
-        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
         color: white;
         padding: 12px 30px;
         border-radius: 25px;
@@ -134,9 +244,24 @@
         margin-top: 10px;
       }
 
-      .contact-button:hover {
+      .tagino-content .contact-button {
+        background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+      }
+
+      .tagino-content .contact-button:hover {
         transform: translateY(-2px);
         box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        color: white;
+        text-decoration: none;
+      }
+
+      .fabugo-content .contact-button {
+        background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+      }
+
+      .fabugo-content .contact-button:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(16, 185, 129, 0.4);
         color: white;
         text-decoration: none;
       }
@@ -198,76 +323,192 @@
           font-size: 30px;
           border-radius: 14px;
         }
+
+        .app-selector {
+          flex-direction: column;
+        }
+
+        .app-card {
+          min-width: 100%;
+        }
       }
     </style>
   </head>
   <body>
     <div class="container">
-      <div class="app-icon">T</div>
-      <h1>Tagino</h1>
-      <p class="subtitle">Informations de support</p>
+      <h1 style="margin-bottom: 30px">Centre de Support</h1>
 
-      <div class="section">
-        <h2 class="section-title">Besoin d'aide ?</h2>
-        <div class="instructions">
-          <strong>Comment nous contacter :</strong>
-          <ol>
-            <li>Envoyez un email à notre équipe de support</li>
-            <li>Décrivez votre question ou votre problème en détail</li>
-            <li>
-              Indiquez la version de l'application et votre appareil si
-              nécessaire
-            </li>
-            <li>Nous vous répondrons dans les plus brefs délais</li>
-          </ol>
+      <div class="app-selector">
+        <div class="app-card tagino active" onclick="switchApp('tagino')">
+          <div class="app-card-icon">T</div>
+          <div class="app-card-title">Tagino</div>
+          <div class="app-card-desc">Gestion de tags</div>
         </div>
-        <div class="info-item">
-          <div class="info-label">Email de support</div>
-          <div class="info-value">
-            <a href="mailto:manulab35@gmail.com?subject=Support Tagino"
-              >manulab35@gmail.com</a
-            >
-          </div>
-          <div style="text-align: center; margin-top: 15px">
-            <a
-              href="mailto:manulab35@gmail.com?subject=Support Tagino"
-              class="contact-button"
-              >Contacter le support</a
-            >
-          </div>
-        </div>
-        <div class="support-types">
-          <strong style="color: #333; display: block; margin-bottom: 10px"
-            >Nous pouvons vous aider avec :</strong
-          >
-          <ul>
-            <li>Questions sur l'utilisation de l'application</li>
-            <li>Problèmes techniques ou bugs</li>
-            <li>Suggestions d'amélioration</li>
-            <li>Problèmes de compte ou de données</li>
-            <li>Toute autre question concernant Tagino</li>
-          </ul>
+        <div class="app-card fabugo" onclick="switchApp('fabugo')">
+          <div class="app-card-icon">F+</div>
+          <div class="app-card-title">Fabugo</div>
+          <div class="app-card-desc">Application Fabug</div>
         </div>
       </div>
 
-      <div class="section">
-        <h2 class="section-title">À propos de Tagino</h2>
-        <div class="info-item">
-          <div class="info-label">Application</div>
-          <div class="info-value">Tagino</div>
-        </div>
-        <div class="info-item">
-          <div class="info-label">Support</div>
-          <div class="info-value">
-            Notre équipe est disponible pour répondre à toutes vos questions et
-            vous aider avec tout problème que vous pourriez rencontrer.
+      <div class="content-area tagino-content active">
+        <div class="app-icon">T</div>
+        <h1>Tagino</h1>
+        <p class="subtitle">Informations de support</p>
+
+        <div class="section">
+          <h2 class="section-title">Besoin d'aide ?</h2>
+          <div class="instructions">
+            <strong>Comment nous contacter :</strong>
+            <ol>
+              <li>Envoyez un email à notre équipe de support</li>
+              <li>Décrivez votre question ou votre problème en détail</li>
+              <li>
+                Indiquez la version de l'application et votre appareil si
+                nécessaire
+              </li>
+              <li>Nous vous répondrons dans les plus brefs délais</li>
+            </ol>
           </div>
+          <div class="info-item">
+            <div class="info-label">Email de support</div>
+            <div class="info-value">
+              <a href="mailto:manulab35@gmail.com?subject=Support Tagino"
+                >manulab35@gmail.com</a
+              >
+            </div>
+            <div style="text-align: center; margin-top: 15px">
+              <a
+                href="mailto:manulab35@gmail.com?subject=Support Tagino"
+                class="contact-button"
+                >Contacter le support</a
+              >
+            </div>
+          </div>
+          <div class="support-types">
+            <strong style="color: #333; display: block; margin-bottom: 10px"
+              >Nous pouvons vous aider avec :</strong
+            >
+            <ul>
+              <li>Questions sur l'utilisation de l'application</li>
+              <li>Problèmes techniques ou bugs</li>
+              <li>Suggestions d'amélioration</li>
+              <li>Problèmes de compte ou de données</li>
+              <li>Toute autre question concernant Tagino</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">À propos de Tagino</h2>
+          <div class="info-item">
+            <div class="info-label">Application</div>
+            <div class="info-value">Tagino</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Support</div>
+            <div class="info-value">
+              Notre équipe est disponible pour répondre à toutes vos questions et
+              vous aider avec tout problème que vous pourriez rencontrer.
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <p>© 2024 Tagino. Tous droits réservés.</p>
         </div>
       </div>
 
-      <div class="footer">
-        <p>© 2024 Tagino. Tous droits réservés.</p>
+      <div class="content-area fabugo-content">
+        <div class="app-icon">F+</div>
+        <h1>Fabugo</h1>
+        <p class="subtitle">Informations de support</p>
+
+        <div class="section">
+          <h2 class="section-title">Besoin d'aide ?</h2>
+          <div class="instructions">
+            <strong>Comment nous contacter :</strong>
+            <ol>
+              <li>Envoyez un email à notre équipe de support</li>
+              <li>Décrivez votre question ou votre problème en détail</li>
+              <li>
+                Indiquez la version de l'application et votre appareil si
+                nécessaire
+              </li>
+              <li>Nous vous répondrons dans les plus brefs délais</li>
+            </ol>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Email de support</div>
+            <div class="info-value">
+              <a href="mailto:manulab35@gmail.com?subject=Support Fabugo"
+                >manulab35@gmail.com</a
+              >
+            </div>
+            <div style="text-align: center; margin-top: 15px">
+              <a
+                href="mailto:manulab35@gmail.com?subject=Support Fabugo"
+                class="contact-button"
+                >Contacter le support</a
+              >
+            </div>
+          </div>
+          <div class="support-types">
+            <strong style="color: #333; display: block; margin-bottom: 10px"
+              >Nous pouvons vous aider avec :</strong
+            >
+            <ul>
+              <li>Questions sur l'utilisation de l'application</li>
+              <li>Problèmes techniques ou bugs</li>
+              <li>Suggestions d'amélioration</li>
+              <li>Problèmes de compte ou de données</li>
+              <li>Toute autre question concernant Fabugo</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">À propos de Fabugo</h2>
+          <div class="info-item">
+            <div class="info-label">Application</div>
+            <div class="info-value">Fabugo</div>
+          </div>
+          <div class="info-item">
+            <div class="info-label">Support</div>
+            <div class="info-value">
+              Notre équipe est disponible pour répondre à toutes vos questions et
+              vous aider avec tout problème que vous pourriez rencontrer.
+            </div>
+          </div>
+        </div>
+
+        <div class="footer">
+          <p>© 2024 Fabugo. Tous droits réservés.</p>
+        </div>
       </div>
     </div>
+
+    <script>
+      function switchApp(appName) {
+        // Update app cards
+        document.querySelectorAll('.app-card').forEach(card => {
+          card.classList.remove('active');
+        });
+        document.querySelector(`.app-card.${appName}`).classList.add('active');
+
+        // Update content areas
+        document.querySelectorAll('.content-area').forEach(content => {
+          content.classList.remove('active');
+        });
+        document.querySelector(`.${appName}-content`).classList.add('active');
+
+        // Update body theme
+        if (appName === 'fabugo') {
+          document.body.classList.add('fabugo-theme');
+        } else {
+          document.body.classList.remove('fabugo-theme');
+        }
+      }
+    </script>
   </body>
 </html>
